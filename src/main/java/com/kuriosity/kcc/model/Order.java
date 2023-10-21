@@ -30,4 +30,18 @@ public class Order {
 
     @Column(nullable = false)
     private String status;
+
+    public Order(Long id, User user, List<Product> products, Date orderDate, Double orderTotal, String status) {
+        this.id = id;
+        this.user = user;
+        this.products = products;
+        this.orderDate = orderDate;
+        this.orderTotal = orderTotal;
+        this.status = status;
+    }
+
+    public Order() {
+    }
+
+
 }
