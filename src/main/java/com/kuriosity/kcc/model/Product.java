@@ -14,4 +14,9 @@ public class Product {
 
     @Column(nullable = false)
     private Double price;
+
+    @Column
+    private String description;
+
+
 }
