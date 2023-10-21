@@ -24,4 +24,7 @@ public class Order {
 
     @Column(nullable = false)
     private Date orderDate;
+
+    @Column(nullable = false)
+    private Double orderTotal;
 }
