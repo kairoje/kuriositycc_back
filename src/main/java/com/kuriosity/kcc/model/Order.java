@@ -27,4 +27,7 @@ public class Order {
 
     @Column(nullable = false)
     private Double orderTotal;
+
+    @Column(nullable = false)
+    private String status;
 }
