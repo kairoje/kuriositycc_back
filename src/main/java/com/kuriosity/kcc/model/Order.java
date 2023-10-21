@@ -90,4 +90,16 @@ public class Order {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", user=" + user +
+                ", products=" + products +
+                ", orderDate=" + orderDate +
+                ", orderTotal=" + orderTotal +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }
