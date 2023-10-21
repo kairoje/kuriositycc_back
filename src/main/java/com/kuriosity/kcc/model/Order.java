@@ -1,6 +1,7 @@
 package com.kuriosity.kcc.model;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,5 +22,6 @@ public class Order {
     )
     private List<Product> products;
 
-
+    @Column(nullable = false)
+    private Date orderDate;
 }
