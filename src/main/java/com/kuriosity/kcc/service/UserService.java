@@ -1,5 +1,7 @@
 package com.kuriosity.kcc.service;
 
+import com.kuriosity.kcc.exception.InformationAlreadyExists;
+import com.kuriosity.kcc.exception.InformationNotFound;
 import com.kuriosity.kcc.model.User;
 import com.kuriosity.kcc.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +24,16 @@ public class UserService {
 
         if (user != null && user.getPassword().equals(password)) {
             return user;
+        } else {
+            throw new InformationAlreadyExists("User with username " + username + " already exists");
         }
-
-        return null;
     }
 
     public User findById(Long id) {
-        return userRepository.findById(id).orElse(null);
+        return userRepository.findById(id)
+                .orElseThrow(() -> new InformationNotFound("User with ID " + id + " not found"));
     }
+
 
     public List<User> findAll() {
         return userRepository.findAll();
@@ -40,7 +44,7 @@ public class UserService {
             updatedUser.setAddress(updatedUser.getAddress());
             return userRepository.save(updatedUser);
         } else {
-            return null;
+            throw new InformationNotFound("Username with id " + id + " not found");
         }
     }
 
