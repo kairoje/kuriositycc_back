@@ -1,5 +1,7 @@
 package com.kuriosity.kcc.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +14,7 @@ public class Order {
     private Long id;
 
     @ManyToOne
+    @JsonIgnore
     private User user;
 
     @ManyToMany
@@ -23,6 +26,7 @@ public class Order {
     private List<Product> products;
 
     @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;
 
     @Column(nullable = false)
@@ -46,6 +50,11 @@ public class Order {
         return products.stream()
                 .mapToDouble(Product::getPrice)
                 .sum();
+    }
+
+    @PrePersist
+    protected void onOrderCreate() {
+        orderDate = new Date();
     }
 
     public Long getId() {
