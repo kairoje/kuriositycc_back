@@ -31,24 +31,25 @@ public class Order {
     @Column(nullable = false)
     private String status;
 
-    public Order(Long id, User user, List<Product> products, Date orderDate, Double orderTotal, String status) {
-        this.id = id;
+    public Order(User user, List<Product> products, Date orderDate, String status) {
         this.user = user;
         this.products = products;
         this.orderDate = orderDate;
-        this.orderTotal = orderTotal;
         this.status = status;
+        this.orderTotal = calculateOrderTotal();
     }
 
     public Order() {
     }
 
-    public Long getId() {
-        return id;
+    private Double calculateOrderTotal() {
+        return products.stream()
+                .mapToDouble(Product::getPrice)
+                .sum();
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getId() {
+        return id;
     }
 
     public User getUser() {
@@ -65,6 +66,7 @@ public class Order {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+        this.orderTotal = calculateOrderTotal();
     }
 
     public Date getOrderDate() {
@@ -73,14 +75,6 @@ public class Order {
 
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
-    }
-
-    public Double getOrderTotal() {
-        return orderTotal;
-    }
-
-    public void setOrderTotal(Double orderTotal) {
-        this.orderTotal = orderTotal;
     }
 
     public String getStatus() {

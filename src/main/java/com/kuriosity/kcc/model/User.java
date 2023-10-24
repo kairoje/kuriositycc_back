@@ -22,11 +22,10 @@ public class User {
     @Column
     private String address;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
     private List<Order> orders;
 
-    public User(Long id, String username, String password, String email, String address) {
-        this.id = id;
+    public User(String username, String password, String email, String address) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -38,10 +37,6 @@ public class User {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getUsername() {
@@ -76,6 +71,10 @@ public class User {
         this.address = address;
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -86,4 +85,5 @@ public class User {
                 ", address='" + address + '\'' +
                 '}';
     }
+
 }
