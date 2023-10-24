@@ -25,11 +25,13 @@ public class User {
     @OneToMany(mappedBy = "user", orphanRemoval = true)
     private List<Order> orders;
 
-    public User(String username, String password, String email, String address) {
+    public User(Long id, String username, String password, String email, String address, List<Order> orders) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.address = address;
+        this.orders = orders;
     }
 
     public User() {
@@ -83,7 +85,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
+                ", orders=" + orders +
                 '}';
     }
-
 }

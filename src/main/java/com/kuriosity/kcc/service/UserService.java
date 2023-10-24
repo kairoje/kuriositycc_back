@@ -2,6 +2,7 @@ package com.kuriosity.kcc.service;
 
 import com.kuriosity.kcc.exception.InformationAlreadyExists;
 import com.kuriosity.kcc.exception.InformationNotFound;
+import com.kuriosity.kcc.model.Order;
 import com.kuriosity.kcc.model.User;
 import com.kuriosity.kcc.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +51,14 @@ public class UserService {
 
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+    }
+
+    public List<Order> getUserOrders(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new InformationNotFound("User not found"));
+        if (user != null) {
+            return user.getOrders();
+        } else {
+            throw new InformationNotFound("Order not found");
+        }
     }
 }

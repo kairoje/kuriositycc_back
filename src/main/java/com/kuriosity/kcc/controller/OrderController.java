@@ -1,6 +1,5 @@
 package com.kuriosity.kcc.controller;
 
-import com.kuriosity.kcc.exception.InformationNotFound;
 import com.kuriosity.kcc.model.Order;
 import com.kuriosity.kcc.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
