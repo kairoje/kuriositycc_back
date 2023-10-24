@@ -2,9 +2,7 @@ package com.kuriosity.kcc.controller;
 
 import com.kuriosity.kcc.exception.InformationNotFound;
 import com.kuriosity.kcc.model.Order;
-import com.kuriosity.kcc.model.User;
-import com.kuriosity.kcc.repository.OrderRepository;
-import com.kuriosity.kcc.repository.UserRepository;
+import com.kuriosity.kcc.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,19 +10,11 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private OrderRepository orderRepository;
+    private OrderService orderService;
 
     @PostMapping("/create-order")
     public Order createOrder(@RequestBody Order orderRequest) {
-
-        User user = userRepository.findById(orderRequest.getUser().getId())
-                .orElseThrow(() -> new InformationNotFound("User not found"));
-
-        Order newOrder = new Order(user, orderRequest.getProducts(), orderRequest.getOrderDate(), orderRequest.getStatus());
-        return orderRepository.save(newOrder);
+        return orderService.createOrder(orderRequest);
     }
 
     @GetMapping("/orders/{orderId}")
