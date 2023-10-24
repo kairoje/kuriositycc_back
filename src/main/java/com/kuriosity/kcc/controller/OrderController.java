@@ -19,8 +19,7 @@ public class OrderController {
 
     @GetMapping("/orders/{orderId}")
     public Order getOrderById(@PathVariable Long orderId) {
-        return orderRepository.findById(orderId)
-                .orElseThrow(() -> new InformationNotFound("Order not found"));
+        return orderService.getOrderById(orderId);
     }
 
     @PutMapping("/orders/{orderId}")
