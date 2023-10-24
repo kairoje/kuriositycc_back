@@ -1,6 +1,7 @@
 package com.kuriosity.kcc.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -20,6 +21,9 @@ public class User {
 
     @Column
     private String address;
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
 
     public User(Long id, String username, String password, String email, String address) {
         this.id = id;
