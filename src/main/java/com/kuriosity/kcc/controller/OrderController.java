@@ -24,14 +24,7 @@ public class OrderController {
 
     @PutMapping("/orders/{orderId}")
     public Order updateOrder(@PathVariable Long orderId, @RequestBody Order updatedOrder) {
-        Order existingOrder = orderRepository.findById(orderId)
-                .orElseThrow(() -> new InformationNotFound("Order not found"));
-
-        existingOrder.setProducts(updatedOrder.getProducts());
-        existingOrder.setOrderDate(updatedOrder.getOrderDate());
-        existingOrder.setStatus(updatedOrder.getStatus());
-
-        return orderRepository.save(existingOrder);
+        return orderService.updateOrder(orderId, updatedOrder);
     }
 
     @DeleteMapping("/orders/{orderId}")

@@ -34,7 +34,14 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public Order updateOrder(Long orderId, Order updatedOrder) {
-        return null;
+        Order existingOrder = orderRepository.findById(orderId)
+                .orElseThrow(() -> new InformationNotFound("Order not found"));
+
+        existingOrder.setProducts(updatedOrder.getProducts());
+        existingOrder.setOrderDate(updatedOrder.getOrderDate());
+        existingOrder.setStatus(updatedOrder.getStatus());
+
+        return orderRepository.save(existingOrder);
     }
 
     @Override
