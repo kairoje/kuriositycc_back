@@ -29,10 +29,7 @@ public class OrderController {
 
     @DeleteMapping("/orders/{orderId}")
     public void deleteOrder(@PathVariable Long orderId) {
-        Order order = orderRepository.findById(orderId)
-                .orElseThrow(() -> new InformationNotFound("Order not found"));
-
-        orderRepository.delete(order);
+        orderService.deleteOrder(orderId);
     }
 }
 

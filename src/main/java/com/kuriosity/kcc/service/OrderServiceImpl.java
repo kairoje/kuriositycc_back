@@ -46,6 +46,9 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public void deleteOrder(Long orderId) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new InformationNotFound("Order not found"));
 
+        orderRepository.delete(order);
     }
 }
