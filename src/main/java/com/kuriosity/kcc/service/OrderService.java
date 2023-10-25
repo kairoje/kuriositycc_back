@@ -47,6 +47,21 @@ public class OrderService {
         }
     }
 
+    public Order updateOrder(Long orderId, Order orderObject) {
+
+        Order order = orderRepository.findOrderById(orderId);
+
+        if (order == null) {
+            throw new InformationNotFound("Order with id " + orderId + " doesn't exist");
+        } else {
+            Order updatedOrder = orderRepository.findOrderById(orderId);
+            updatedOrder.setDate(orderObject.getDate());
+            updatedOrder.setTotal(orderObject.getTotal());
+            updatedOrder.setStatus(orderObject.getStatus());
+            return orderRepository.save(updatedOrder);
+        }
+    }
+
     public void deleteOrder(Long orderId) {
         orderRepository.deleteById(orderId);
     }
