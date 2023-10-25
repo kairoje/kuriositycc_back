@@ -1,6 +1,8 @@
 package com.kuriosity.kcc.service;
 
+import com.kuriosity.kcc.exception.InformationNotFound;
 import com.kuriosity.kcc.model.Order;
+import com.kuriosity.kcc.model.Product;
 import com.kuriosity.kcc.repository.OrderRepository;
 
 import java.util.List;
@@ -16,7 +18,12 @@ public class OrderService {
     public void setOrderRepository(OrderRepository orderRepository) { this.orderRepository = orderRepository; }
 
     public List<Order> getOrders() {
-        return orderRepository.findAll();
+        List<Order> orderList = orderRepository.findAll();
+        if (orderList.isEmpty()){
+            throw new InformationNotFound("No orders found");
+        } else {
+            return orderList;
+        }
     }
 
     public Order addNewOrder(Order order) {
