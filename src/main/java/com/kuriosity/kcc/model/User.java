@@ -29,4 +29,7 @@ public class User {
     @Column
     private String address;
 
+    @OneToMany(mappedBy = "user")
+    private List<Order> orderList;
+
 }
