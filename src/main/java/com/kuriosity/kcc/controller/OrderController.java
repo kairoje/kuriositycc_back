@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/orders")
+@RequestMapping(path = "/api")
 public class OrderController {
 
-    private final OrderService orderService;
+    private OrderService orderService;
 
     @Autowired
-    public OrderController(OrderService orderService) {
+    public void setProductService(OrderService orderService) {
         this.orderService = orderService;
     }
 

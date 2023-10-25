@@ -3,14 +3,12 @@ package com.kuriosity.kcc.service;
 import com.kuriosity.kcc.exception.InformationAlreadyExists;
 import com.kuriosity.kcc.exception.InformationNotFound;
 import com.kuriosity.kcc.model.Order;
-import com.kuriosity.kcc.model.Product;
 import com.kuriosity.kcc.repository.OrderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 @Service
 public class OrderService {
@@ -62,7 +60,13 @@ public class OrderService {
         }
     }
 
-    public void deleteOrder(Long orderId) {
-        orderRepository.deleteById(orderId);
+    public Optional<Order> deleteOrder(Long orderId) {
+        Order order = orderRepository.findOrderById(orderId);
+        if (order != null){
+            orderRepository.deleteById(orderId);
+            return Optional.of(order);
+        } else {
+            throw new InformationNotFound("Order with id " + orderId + " doesn't exist");
+        }
     }
 }
