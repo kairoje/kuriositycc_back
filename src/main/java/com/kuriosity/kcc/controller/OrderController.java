@@ -30,10 +30,9 @@ public class OrderController {
         return orderService.getOrder(orderId);
     }
 
-    @PostMapping
-    @ResponseBody
-    public Order addNewOrder(@RequestBody Order order) {
-        return orderService.addNewOrder(order);
+    @PostMapping("/orders")
+    public Order createOrder(@RequestBody Order orderObject) {
+        return orderService.createOrder(orderObject);
     }
 
     @DeleteMapping(path = "{orderId}")
