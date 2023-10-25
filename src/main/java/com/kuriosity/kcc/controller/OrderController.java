@@ -5,30 +5,34 @@ import com.kuriosity.kcc.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
+@RequestMapping(path = "api/orders")
 public class OrderController {
 
+    private final OrderService orderService;
+
     @Autowired
-    private OrderService orderService;
-
-    @PostMapping("/create-order")
-    public Order createOrder(@RequestBody Order orderRequest) {
-        return orderService.createOrder(orderRequest);
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
     }
 
-    @GetMapping("/orders/{orderId}")
-    public Order getOrderById(@PathVariable Long orderId) {
-        return orderService.getOrderById(orderId);
+    @GetMapping
+    public List<Order> getOrders() {
+        return orderService.getOrders();
     }
 
-    @PutMapping("/orders/{orderId}")
-    public Order updateOrder(@PathVariable Long orderId, @RequestBody Order updatedOrder) {
-        return orderService.updateOrder(orderId, updatedOrder);
+    @PostMapping
+    @ResponseBody
+    public Order addNewOrder(@RequestBody Order order) {
+        return orderService.addNewOrder(order);
     }
 
-    @DeleteMapping("/orders/{orderId}")
+    @DeleteMapping(path = "{orderId}")
     public void deleteOrder(@PathVariable Long orderId) {
         orderService.deleteOrder(orderId);
     }
+
 }
 

@@ -40,9 +40,9 @@ public class UserController {
         userService.deleteUser(id);
     }
 
-    @GetMapping("/{id}/orders")
-    public List<Order> getUserOrders(@PathVariable Long id) {
-        User user = userService.findById(id);
-        return user.getOrders();
-    }
+//    @GetMapping("/{id}/orders")
+//    public List<Order> getUserOrders(@PathVariable Long id) {
+//        User user = userService.findById(id);
+//        return user.getOrders();
+//    }
 }

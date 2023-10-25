@@ -53,12 +53,12 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public List<Order> getUserOrders(Long userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new InformationNotFound("User not found"));
-        if (user != null) {
-            return user.getOrders();
-        } else {
-            throw new InformationNotFound("Order not found");
-        }
-    }
+//    public List<Order> getUserOrders(Long userId) {
+//        User user = userRepository.findById(userId).orElseThrow(() -> new InformationNotFound("User not found"));
+//        if (user != null) {
+//            return user.getOrders();
+//        } else {
+//            throw new InformationNotFound("Order not found");
+//        }
+//    }
 }
