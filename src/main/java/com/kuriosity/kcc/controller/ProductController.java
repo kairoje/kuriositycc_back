@@ -3,6 +3,8 @@ package com.kuriosity.kcc.controller;
 import com.kuriosity.kcc.model.Product;
 import com.kuriosity.kcc.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,22 +22,26 @@ public class ProductController {
     public List<Product> getProducts() { return productService.getProducts(); }
 
     @GetMapping("/products/{productId}")
-    public Optional<Product> getProduct(@PathVariable(value = "productId") Long productId) {
-        return productService.getProduct(productId);
+    public ResponseEntity<Product> getProduct(@PathVariable Long productId) {
+        Optional<Product> product = productService.getProduct(productId);
+        return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/products")
-    public Product createProduct(@RequestBody Product productObject) {
-        return productService.createProduct(productObject);
+    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+        Product createdProduct = productService.createProduct(product);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
     }
 
     @PutMapping("/products/{productId}")
-    public Product updateProduct(@PathVariable(value = "productId") Long productId, @RequestBody Product product) {
-        return productService.updateProduct(productId, product);
+    public ResponseEntity<Product> updateProduct(@PathVariable Long productId, @RequestBody Product product) {
+        Product updatedProduct = productService.updateProduct(productId, product);
+        return ResponseEntity.ok(updatedProduct);
     }
 
     @DeleteMapping("/products/{productId}")
-    public Optional<Product> deleteProduct(@PathVariable(value = "productId") Long productId) {
-        return productService.deleteProduct(productId);
+    public ResponseEntity<Product> deleteProduct(@PathVariable Long productId) {
+        Optional<Product> deletedProduct = productService.deleteProduct(productId);
+        return deletedProduct.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
