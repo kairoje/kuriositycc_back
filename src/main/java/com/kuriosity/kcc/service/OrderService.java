@@ -3,6 +3,7 @@ package com.kuriosity.kcc.service;
 import com.kuriosity.kcc.exception.InformationAlreadyExists;
 import com.kuriosity.kcc.exception.InformationNotFound;
 import com.kuriosity.kcc.model.Order;
+import com.kuriosity.kcc.model.Product;
 import com.kuriosity.kcc.model.User;
 import com.kuriosity.kcc.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;

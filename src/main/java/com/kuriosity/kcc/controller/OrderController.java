@@ -3,6 +3,7 @@ package com.kuriosity.kcc.controller;
 import com.kuriosity.kcc.model.Order;
 import com.kuriosity.kcc.model.Product;
 import com.kuriosity.kcc.service.OrderService;
+import com.kuriosity.kcc.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,10 +15,16 @@ import java.util.Optional;
 public class OrderController {
 
     private OrderService orderService;
+    private ProductService productService;
 
     @Autowired
-    public void setProductService(OrderService orderService) {
+    public void setOrderService(OrderService orderService) {
         this.orderService = orderService;
+    }
+
+    @Autowired
+    public void setProductService(ProductService productService) {
+        this.productService = productService;
     }
 
     @GetMapping("/orders")
