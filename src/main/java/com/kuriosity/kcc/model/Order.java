@@ -2,7 +2,6 @@ package com.kuriosity.kcc.model;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -10,37 +9,21 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    private User user;
-
-    @ManyToMany
-    @JoinTable(
-            name = "order_product",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    private List<Product> products;
-
-    @Column(nullable = false)
-    private Date orderDate;
-
-    @Column(nullable = false)
-    private Double orderTotal;
-
-    @Column(nullable = false)
+    @Column
+    private Date date;
+    @Column
+    private Double total;
+    @Column
     private String status;
 
-    public Order(Long id, User user, List<Product> products, Date orderDate, Double orderTotal, String status) {
-        this.id = id;
-        this.user = user;
-        this.products = products;
-        this.orderDate = orderDate;
-        this.orderTotal = orderTotal;
-        this.status = status;
+    public Order() {
     }
 
-    public Order() {
+    public Order(Long id, Date date, Double total, String status) {
+        this.id = id;
+        this.date = date;
+        this.total = total;
+        this.status = status;
     }
 
     public Long getId() {
@@ -51,36 +34,20 @@ public class Order {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Date getDate() {
+        return date;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public Double getTotal() {
+        return total;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public Double getOrderTotal() {
-        return orderTotal;
-    }
-
-    public void setOrderTotal(Double orderTotal) {
-        this.orderTotal = orderTotal;
+    public void setTotal(Double total) {
+        this.total = total;
     }
 
     public String getStatus() {
@@ -95,10 +62,8 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", user=" + user +
-                ", products=" + products +
-                ", orderDate=" + orderDate +
-                ", orderTotal=" + orderTotal +
+                ", date=" + date +
+                ", total=" + total +
                 ", status='" + status + '\'' +
                 '}';
     }

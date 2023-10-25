@@ -1,5 +1,6 @@
 package com.kuriosity.kcc.controller;
 
+import com.kuriosity.kcc.model.Order;
 import com.kuriosity.kcc.model.User;
 import com.kuriosity.kcc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,4 +39,10 @@ public class UserController {
     public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
     }
+
+//    @GetMapping("/{id}/orders")
+//    public List<Order> getUserOrders(@PathVariable Long id) {
+//        User user = userService.findById(id);
+//        return user.getOrders();
+//    }
 }

@@ -1,27 +1,49 @@
 package com.kuriosity.kcc.controller;
 
-import com.kuriosity.kcc.exception.InformationNotFound;
 import com.kuriosity.kcc.model.Order;
-import com.kuriosity.kcc.model.User;
-import com.kuriosity.kcc.repository.OrderRepository;
-import com.kuriosity.kcc.repository.UserRepository;
+import com.kuriosity.kcc.model.Product;
+import com.kuriosity.kcc.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping(path = "/api")
 public class OrderController {
 
-    private UserRepository userRepository;
+    private OrderService orderService;
 
-    private OrderRepository orderRepository;
-
-    @PostMapping
-    public Order createOrder(@RequestBody Order orderRequest) {
-        User user = userRepository.findById(orderRequest.getUser().getId())
-                .orElseThrow(() -> new InformationNotFound("User not found"));
-
-        Order newOrder = new Order(orderRequest.getId(), orderRequest.getUser(), orderRequest.getProducts(), orderRequest.getOrderDate(), orderRequest.getOrderTotal(), orderRequest.getStatus());
-        return orderRepository.save(newOrder);
+    @Autowired
+    public void setProductService(OrderService orderService) {
+        this.orderService = orderService;
     }
+
+    @GetMapping("/orders")
+    public List<Order> getOrders() {
+        return orderService.getOrders();
+    }
+
+    @GetMapping("/orders/{orderId}")
+    public Optional<Order> getOrder(@PathVariable(value = "orderId") Long orderId) {
+        return orderService.getOrder(orderId);
+    }
+
+    @PostMapping("/orders")
+    public Order createOrder(@RequestBody Order orderObject) {
+        return orderService.createOrder(orderObject);
+    }
+
+    @PutMapping("/orders/{orderId}")
+    public Order updateOrder(@PathVariable(value = "orderId") Long orderId, @RequestBody Order order) {
+        return orderService.updateOrder(orderId, order);
+    }
+
+    @DeleteMapping("/orders/{orderId}")
+    public Optional<Order> deleteOrder(@PathVariable(value = "orderId") Long orderId) {
+        return orderService.deleteOrder(orderId);
+    }
+
 }
+
