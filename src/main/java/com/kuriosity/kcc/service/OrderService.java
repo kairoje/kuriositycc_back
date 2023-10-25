@@ -38,7 +38,7 @@ public class OrderService {
         }
     }
 
-    public Order orderProduct(Order orderObject) {
+    public Order createOrder(Order orderObject) {
         Order order = orderRepository.findOrderById(orderObject.getId());
         if (order != null) {
             throw new InformationAlreadyExists("Order: " + order + " already exist");
