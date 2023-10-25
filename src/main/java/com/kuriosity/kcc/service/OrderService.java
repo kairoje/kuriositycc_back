@@ -6,6 +6,8 @@ import com.kuriosity.kcc.model.Product;
 import com.kuriosity.kcc.repository.OrderRepository;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,15 @@ public class OrderService {
             throw new InformationNotFound("No orders found");
         } else {
             return orderList;
+        }
+    }
+
+    public Optional<Order> getOrder(Long orderId){
+        Order order = orderRepository.findOrderById(orderId);
+        if (order == null){
+            throw new InformationNotFound("Order with id " + orderId + " doesn't exist");
+        } else {
+            return Optional.of(order);
         }
     }
 
