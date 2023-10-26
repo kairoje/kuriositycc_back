@@ -7,7 +7,9 @@ import com.kuriosity.kcc.model.Product;
 import com.kuriosity.kcc.model.User;
 import com.kuriosity.kcc.repository.OrderRepository;
 import com.kuriosity.kcc.repository.ProductRepository;
+import com.kuriosity.kcc.security.AuthUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +26,11 @@ public class OrderService {
 
     @Autowired
     public void setOrderRepository(OrderRepository orderRepository) { this.orderRepository = orderRepository; }
+
+    public static User getCurrentLoggedInUser(){
+        AuthUserDetails authUserDetails = (AuthUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return authUserDetails.getUser();
+    }
 
     public List<Order> getOrders() {
         List<Order> orderList = orderRepository.findAll();
