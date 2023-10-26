@@ -5,6 +5,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -46,5 +47,15 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             logger.info("Cannot set user authentication token");
         }
         filterChain.doFilter(request, response);
+    }
+
+    public String parseJwt(HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+
+        if (StringUtils.hasLength(authHeader) && authHeader.startsWith("Bearer")) {
+            return authHeader.substring(7);
+        }
+        logger.info("No header");
+        return null;
     }
 }
