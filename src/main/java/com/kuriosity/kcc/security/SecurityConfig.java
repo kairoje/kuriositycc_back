@@ -19,12 +19,12 @@ public class SecurityConfig {
     public BCryptPasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
 
     @Bean
-    public JwtRequestFilter jwtRequestFilter() { return new JwtRequestFilter(); }
+    public JwtRequestFilter authJwtRequestFilter() { return new JwtRequestFilter(); }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/auth/users/login/", "/auth/users/register/").permitAll()
+                .antMatchers("/auth/login", "/auth/register").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -34,7 +34,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .headers().frameOptions().disable();
         http.cors();
-        http.addFilterBefore(jwtRequestFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(authJwtRequestFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
