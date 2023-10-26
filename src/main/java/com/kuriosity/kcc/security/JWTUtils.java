@@ -3,6 +3,7 @@ package com.kuriosity.kcc.security;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.logging.Logger;
 
 @Service
@@ -16,5 +17,12 @@ public class JWTUtils {
     @Value("${jwt-expiration-ms}")
     private int jwtExpirationMs;
 
-    public String generateJwtToken(AuthUserDetails)
+    public String generateJwtToken(AuthUserDetails authUserDetails) {
+        return Jwts.builder()
+                .setSubject(authUserDetails.getUsername())
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(new Date().getTime() + jwtExpirationMs))
+                .signWith(SignatureAlgorithm.HS256, jwtSecret)
+                .compact();
+    }
 }
