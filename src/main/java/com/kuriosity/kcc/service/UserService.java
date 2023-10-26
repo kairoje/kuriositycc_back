@@ -2,6 +2,7 @@ package com.kuriosity.kcc.service;
 
 import com.kuriosity.kcc.exception.InformationAlreadyExists;
 import com.kuriosity.kcc.exception.InformationNotFound;
+import com.kuriosity.kcc.model.LoginRequest;
 import com.kuriosity.kcc.model.Order;
 import com.kuriosity.kcc.model.User;
 import com.kuriosity.kcc.repository.UserRepository;
@@ -49,15 +50,15 @@ public class UserService {
         }
     }
 
-    public Optional<String> login(String username, String password) {
+    public Optional<String> login(LoginRequest loginRequest){
         UsernamePasswordAuthenticationToken authenticationToken = new
-                UsernamePasswordAuthenticationToken(username, password);
-        try {
+                UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword());
+        try{
             Authentication authentication = authenticationManager.authenticate(authenticationToken);
             SecurityContextHolder.getContext().setAuthentication(authentication);
             AuthUserDetails authUserDetails = (AuthUserDetails) authentication.getPrincipal();
             return Optional.of(jwtUtils.generateJwtToken(authUserDetails));
-        } catch (Exception e) {
+        } catch (Exception e){
             return Optional.empty();
         }
     }
