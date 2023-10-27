@@ -74,6 +74,15 @@ public class ProductService {
         }
     }
 
+
+    /**
+     * Updates an existing product with the specified ID.
+     *
+     * @param id The ID of the product to update.
+     * @param productObject The updated product information.
+     * @return The updated product if successful, or throws an exception if the product is not found.
+     * @throws InformationNotFound If no product is found with the given ID for updating.
+     */
     public Product updateProduct(Long id, Product productObject) {
 
         Product product = productRepository.findProductById(id);
