@@ -79,6 +79,13 @@ public class OrderService {
         }
     }
 
+    /**
+     * Creates a new order in the system.
+     *
+     * @param orderObject The order to be created.
+     * @return The created order if successful, or throws an exception if an order with the same ID already exists.
+     * @throws InformationAlreadyExists If an order with the same ID already exists.
+     */
     public Order createOrder(Order orderObject) {
         Order order = orderRepository.findOrderById(orderObject.getId());
         if (order != null) {
