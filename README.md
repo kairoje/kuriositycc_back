@@ -19,6 +19,11 @@ This README provides documentation for the backend API of our e-commerce applica
 - PUT /api/users/{id} - Update user information.
 - DELETE /api/users/{id} - Delete a user.
 
+**User Order Management:**
+- GET /api/users/{userId}/orders - Get a list of orders for a specific user.
+- POST /api/users/{userId}/orders - Create an order for a specific user.
+
+
 ## User Stories
 
 **User Registration:**
