@@ -19,6 +19,11 @@ public class ProductService {
 
     private ProductRepository productRepository;
 
+    /**
+     * Setter for injecting the ProductRepository.
+     *
+     * @param productRepository The repository for product data.
+     */
     @Autowired
     public void setProductRepository(ProductRepository productRepository) { this.productRepository = productRepository; }
 
