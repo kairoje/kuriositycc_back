@@ -16,6 +16,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service class responsible for managing order-related operations, including retrieval,
+ * creation, updating, and deletion of orders, as well as handling user-based orders and
+ * adding products to orders.
+ */
 @Service
 public class OrderService {
 
