@@ -58,6 +58,13 @@ public class ProductService {
         }
     }
 
+    /**
+     * Creates a new product in the system.
+     *
+     * @param productObject The product to be created.
+     * @return The created product if successful, or throws an exception if a product with the same ID already exists.
+     * @throws InformationAlreadyExists If a product with the same ID already exists.
+     */
     public Product createProduct(Product productObject) {
         Product product = productRepository.findProductById(productObject.getId());
         if (product != null) {
