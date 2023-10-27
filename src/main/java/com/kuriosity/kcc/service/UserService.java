@@ -101,7 +101,11 @@ public class UserService {
                 .orElseThrow(() -> new InformationNotFound("User with ID " + id + " not found"));
     }
 
-
+    /**
+     * Retrieves a list of all registered users.
+     *
+     * @return A list of all registered users.
+     */
     public List<User> findAll() {
         return userRepository.findAll();
     }
