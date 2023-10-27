@@ -34,15 +34,15 @@ This README provides documentation for the backend API of our e-commerce applica
 - As an administrator, I can process refunds for orders.
 
 **Hurdles:**
-Configuring security and JWT tokens.
-Connecting all endpoints to the front end.
-Getting all backend tests to pass.
+- Configuring security and JWT tokens.
+- Connecting all endpoints to the front end.
+- Getting all backend tests to pass.
 
-Tools Used
-IntelliJ
-Spring Framework
-JWT (JSON Web Tokens)
-MockMvc
+**Tools Used:**
+- IntelliJ
+- Spring Framework
+- JWT (JSON Web Tokens)
+- MockMvc
 
 ## Acknowledgments
 Special thanks to our amazing instructors!!
