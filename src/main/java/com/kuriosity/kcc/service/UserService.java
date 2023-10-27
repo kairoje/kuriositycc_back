@@ -20,6 +20,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service class responsible for managing user-related operations such as registration,
+ * login, retrieval, update, and deletion of user information.
+ */
 @Service
 public class UserService {
 
