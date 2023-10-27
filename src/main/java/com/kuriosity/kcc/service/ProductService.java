@@ -42,6 +42,13 @@ public class ProductService {
         }
     }
 
+    /**
+     * Retrieves a product by its unique identifier.
+     *
+     * @param productId The ID of the product to retrieve.
+     * @return An optional containing the product if found, or throws an exception if the product is not found.
+     * @throws InformationNotFound If no product is found with the given ID.
+     */
     public Optional<Product> getProduct(Long productId){
         Product product = productRepository.findProductById(productId);
         if (product == null){
