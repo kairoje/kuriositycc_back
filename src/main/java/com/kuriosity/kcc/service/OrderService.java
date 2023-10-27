@@ -63,6 +63,13 @@ public class OrderService {
         }
     }
 
+    /**
+     * Retrieves an order by its unique identifier.
+     *
+     * @param orderId The ID of the order to retrieve.
+     * @return An optional containing the order if found, or throws an exception if the order is not found.
+     * @throws InformationNotFound If no order is found with the given ID.
+     */
     public Optional<Order> getOrder(Long orderId){
         Order order = orderRepository.findOrderById(orderId);
         if (order == null){
