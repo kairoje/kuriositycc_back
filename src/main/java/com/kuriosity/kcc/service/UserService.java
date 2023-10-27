@@ -110,6 +110,14 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    /**
+     * Updates user information for a user with the specified ID.
+     *
+     * @param id The ID of the user to be updated.
+     * @param updatedUser The updated user information.
+     * @return The updated user information.
+     * @throws InformationNotFound If no user is found with the given ID for updating.
+     */
     public User updateUser(Long id, User updatedUser) {
         if (userRepository.existsById(id)) {
             updatedUser.setAddress(updatedUser.getAddress());
