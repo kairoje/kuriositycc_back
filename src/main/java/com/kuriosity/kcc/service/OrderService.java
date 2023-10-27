@@ -137,6 +137,12 @@ public class OrderService {
 
 //    User based orders ==>
 
+    /**
+     * Retrieves a list of orders associated with a specific user.
+     *
+     * @param user The user for whom to retrieve orders.
+     * @return A list of orders associated with the user.
+     */
     public List<Order> getUserOrder(User user) {
         return orderRepository.findByUser(user);
     }
