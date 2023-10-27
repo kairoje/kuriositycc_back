@@ -40,6 +40,11 @@ This README provides documentation for the backend API of our e-commerce applica
 - DELETE /api/orders/{orderId} - Delete an order.
 - POST /api/{orderId}/add-product/{productId} - Add a product to an order.
 
+## AuthController
+**User Authentication:**
+- POST /api/auth/register - Register a new user.
+- POST /api/auth/login - User login and JWT token retrieval.
+
 ## User Stories
 
 **User Registration:**
