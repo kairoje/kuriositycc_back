@@ -118,6 +118,13 @@ public class OrderService {
         }
     }
 
+    /**
+     * Deletes an order by its unique identifier.
+     *
+     * @param orderId The ID of the order to delete.
+     * @return An optional containing the deleted order if found, or throws an exception if the order is not found.
+     * @throws InformationNotFound If no order is found with the given ID for deletion.
+     */
     public Optional<Order> deleteOrder(Long orderId) {
         Order order = orderRepository.findOrderById(orderId);
         if (order != null){
