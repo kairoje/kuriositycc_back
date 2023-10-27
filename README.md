@@ -11,6 +11,14 @@ This README provides documentation for the backend API of our e-commerce applica
 ## ERD
 <img src="kcc_erd.png" alt="KCC ERD" width="800" height="300">
 
+## UserController
+**User Management:**
+- POST /api/users - Create a new user.
+- GET /api/users/{id} - Get user by ID.
+- GET /api/users - Get a list of all users.
+- PUT /api/users/{id} - Update user information.
+- DELETE /api/users/{id} - Delete a user.
+
 ## User Stories
 
 **User Registration:**
