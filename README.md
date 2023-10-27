@@ -23,6 +23,14 @@ This README provides documentation for the backend API of our e-commerce applica
 - GET /api/users/{userId}/orders - Get a list of orders for a specific user.
 - POST /api/users/{userId}/orders - Create an order for a specific user.
 
+## ProductController
+**Product Management:**
+- GET /api/products - Get a list of all products.
+- GET /api/products/{productId} - Get product by ID.
+- POST /api/products - Create a new product.
+- PUT /api/products/{productId} - Update a product.
+- DELETE /api/products/{productId} - Delete a product.
+
 
 ## User Stories
 
