@@ -8,6 +8,7 @@ import com.kuriosity.kcc.model.User;
 import com.kuriosity.kcc.repository.OrderRepository;
 import com.kuriosity.kcc.repository.ProductRepository;
 import com.kuriosity.kcc.security.AuthUserDetails;
+import com.kuriosity.kcc.security.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
