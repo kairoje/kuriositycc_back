@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service class responsible for managing product-related operations, including retrieval,
+ * creation, updating, and deletion of products.
+ */
 @Service
 public class ProductService {
 
