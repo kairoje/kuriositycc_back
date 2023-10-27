@@ -48,6 +48,12 @@ public class OrderService {
         return authUserDetails.getUser();
     }
 
+    /**
+     * Retrieves a list of all available orders.
+     *
+     * @return A list of orders if available, or throws an exception if no orders are found.
+     * @throws InformationNotFound If no orders are found in the database.
+     */
     public List<Order> getOrders() {
         List<Order> orderList = orderRepository.findAll();
         if (orderList.isEmpty()){
