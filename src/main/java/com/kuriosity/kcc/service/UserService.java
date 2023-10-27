@@ -127,6 +127,11 @@ public class UserService {
         }
     }
 
+    /**
+     * Deletes a user with the specified ID.
+     *
+     * @param id The ID of the user to be deleted.
+     */
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
