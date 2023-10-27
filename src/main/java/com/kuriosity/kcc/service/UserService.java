@@ -35,6 +35,14 @@ public class UserService {
 
     private final AuthenticationManager authenticationManager;
 
+    /**
+     * Constructor for UserService.
+     *
+     * @param userRepository The repository for user data.
+     * @param passwordEncoder A component for encoding and decoding passwords.
+     * @param jwtUtils A utility for handling JSON Web Tokens (JWT).
+     * @param authenticationManager An authentication manager for user authentication.
+     */
     @Autowired
     public UserService(UserRepository userRepository, @Lazy PasswordEncoder passwordEncoder,
                        JWTUtils jwtUtils,
