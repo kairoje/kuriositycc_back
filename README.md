@@ -38,4 +38,14 @@ Configuring security and JWT tokens.
 Connecting all endpoints to the front end.
 Getting all backend tests to pass.
 
+Tools Used
+IntelliJ
+Spring Framework
+JWT (JSON Web Tokens)
+MockMvc
 
+## Acknowledgments
+Special thanks to our amazing instructors!!
+- Suresh Sigera: [GitHub](https://github.com/sureshmelvinsigera)
+- Dhrubo Chowdhury: [GitHub](https://github.com/Dhrubo-Chowdhury)
+- Leonardo Rodriguez: [GitHub](https://github.com/LRodriguez92)
