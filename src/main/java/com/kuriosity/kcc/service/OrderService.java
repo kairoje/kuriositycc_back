@@ -95,6 +95,14 @@ public class OrderService {
         }
     }
 
+    /**
+     * Updates an existing order with the specified ID.
+     *
+     * @param orderId The ID of the order to update.
+     * @param orderObject The updated order information.
+     * @return The updated order if successful, or throws an exception if the order is not found.
+     * @throws InformationNotFound If no order is found with the given ID for updating.
+     */
     public Order updateOrder(Long orderId, Order orderObject) {
 
         Order order = orderRepository.findOrderById(orderId);
