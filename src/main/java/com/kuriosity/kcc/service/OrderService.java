@@ -147,6 +147,13 @@ public class OrderService {
         return orderRepository.findByUser(user);
     }
 
+    /**
+     * Creates an order for a specific user.
+     *
+     * @param user The user for whom to create the order.
+     * @param order The order to be created.
+     * @return The created order associated with the user.
+     */
     public Order userCreateOrder(User user, Order order) {
         order.setUser(user);
         return orderRepository.save(order);
