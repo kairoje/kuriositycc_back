@@ -38,6 +38,11 @@ public class OrderService {
     @Autowired
     public void setOrderRepository(OrderRepository orderRepository) { this.orderRepository = orderRepository; }
 
+    /**
+     * Retrieves the currently logged-in user.
+     *
+     * @return The user who is currently logged in.
+     */
     public static User getCurrentLoggedInUser(){
         AuthUserDetails authUserDetails = (AuthUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return authUserDetails.getUser();
