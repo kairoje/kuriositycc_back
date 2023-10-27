@@ -70,6 +70,12 @@ public class UserService {
         }
     }
 
+    /**
+     * Logs in a user with the provided username and password, returning a JWT token upon successful authentication.
+     *
+     * @param loginRequest The login request containing the username and password.
+     * @return An optional JWT token if login is successful, empty if login fails.
+     */
     public Optional<String> login(LoginRequest loginRequest){
         UsernamePasswordAuthenticationToken authenticationToken = new
                 UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword());
