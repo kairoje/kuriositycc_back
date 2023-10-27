@@ -32,3 +32,10 @@ This README provides documentation for the backend API of our e-commerce applica
 - As an administrator, I can view a list of orders, their status, and order details.
 - As an administrator, I can update the status of orders (e.g., process, ship, deliver).
 - As an administrator, I can process refunds for orders.
+
+**Hurdles:**
+Configuring security and JWT tokens.
+Connecting all endpoints to the front end.
+Getting all backend tests to pass.
+
+
