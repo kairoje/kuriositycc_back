@@ -53,6 +53,14 @@ public class UserService {
         this.authenticationManager = authenticationManager;
     }
 
+
+    /**
+     * Registers a new user by saving their information to the database.
+     *
+     * @param user The user to be registered.
+     * @return The registered user after successful registration.
+     * @throws InformationAlreadyExists If a user with the same email address already exists.
+     */
     public User register(User user) {
         if (!userRepository.existsByUsername(user.getUsername())){
             user.setPassword(passwordEncoder.encode(user.getPassword()));
