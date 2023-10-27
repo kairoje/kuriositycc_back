@@ -161,6 +161,13 @@ public class OrderService {
 
 // Products in orders ==>
 
+    /**
+     * Adds a product to an existing order.
+     *
+     * @param orderId The ID of the order to which the product will be added.
+     * @param productId The ID of the product to be added to the order.
+     * @return The updated order after adding the product.
+     */
     public Order addProductsToOrder(Long orderId, Long productId) {
         Order order = orderRepository.findOrderById(orderId);
         Product product = productRepository.findProductById(productId);
