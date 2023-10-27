@@ -27,6 +27,12 @@ public class ProductService {
     @Autowired
     public void setProductRepository(ProductRepository productRepository) { this.productRepository = productRepository; }
 
+    /**
+     * Retrieves a list of all available products.
+     *
+     * @return A list of products if available, or throws an exception if no products are found.
+     * @throws InformationNotFound If no products are found in the database.
+     */
     public List<Product> getProducts() {
         List<Product> productList = productRepository.findAll();
         if (productList.isEmpty()){
