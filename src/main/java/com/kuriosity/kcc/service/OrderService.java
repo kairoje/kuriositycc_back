@@ -16,6 +16,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service class responsible for managing order-related operations, including retrieval,
+ * creation, updating, and deletion of orders, as well as handling user-based orders and
+ * adding products to orders.
+ */
 @Service
 public class OrderService {
 
@@ -25,14 +30,30 @@ public class OrderService {
     @Autowired
     private ProductRepository productRepository;
 
+    /**
+     * Setter for injecting the OrderRepository.
+     *
+     * @param orderRepository The repository for order data.
+     */
     @Autowired
     public void setOrderRepository(OrderRepository orderRepository) { this.orderRepository = orderRepository; }
 
+    /**
+     * Retrieves the currently logged-in user.
+     *
+     * @return The user who is currently logged in.
+     */
     public static User getCurrentLoggedInUser(){
         AuthUserDetails authUserDetails = (AuthUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return authUserDetails.getUser();
     }
 
+    /**
+     * Retrieves a list of all available orders.
+     *
+     * @return A list of orders if available, or throws an exception if no orders are found.
+     * @throws InformationNotFound If no orders are found in the database.
+     */
     public List<Order> getOrders() {
         List<Order> orderList = orderRepository.findAll();
         if (orderList.isEmpty()){
@@ -42,6 +63,13 @@ public class OrderService {
         }
     }
 
+    /**
+     * Retrieves an order by its unique identifier.
+     *
+     * @param orderId The ID of the order to retrieve.
+     * @return An optional containing the order if found, or throws an exception if the order is not found.
+     * @throws InformationNotFound If no order is found with the given ID.
+     */
     public Optional<Order> getOrder(Long orderId){
         Order order = orderRepository.findOrderById(orderId);
         if (order == null){
@@ -51,6 +79,13 @@ public class OrderService {
         }
     }
 
+    /**
+     * Creates a new order in the system.
+     *
+     * @param orderObject The order to be created.
+     * @return The created order if successful, or throws an exception if an order with the same ID already exists.
+     * @throws InformationAlreadyExists If an order with the same ID already exists.
+     */
     public Order createOrder(Order orderObject) {
         Order order = orderRepository.findOrderById(orderObject.getId());
         if (order != null) {
@@ -60,6 +95,14 @@ public class OrderService {
         }
     }
 
+    /**
+     * Updates an existing order with the specified ID.
+     *
+     * @param orderId The ID of the order to update.
+     * @param orderObject The updated order information.
+     * @return The updated order if successful, or throws an exception if the order is not found.
+     * @throws InformationNotFound If no order is found with the given ID for updating.
+     */
     public Order updateOrder(Long orderId, Order orderObject) {
 
         Order order = orderRepository.findOrderById(orderId);
@@ -75,6 +118,13 @@ public class OrderService {
         }
     }
 
+    /**
+     * Deletes an order by its unique identifier.
+     *
+     * @param orderId The ID of the order to delete.
+     * @return An optional containing the deleted order if found, or throws an exception if the order is not found.
+     * @throws InformationNotFound If no order is found with the given ID for deletion.
+     */
     public Optional<Order> deleteOrder(Long orderId) {
         Order order = orderRepository.findOrderById(orderId);
         if (order != null){
@@ -87,10 +137,23 @@ public class OrderService {
 
 //    User based orders ==>
 
+    /**
+     * Retrieves a list of orders associated with a specific user.
+     *
+     * @param user The user for whom to retrieve orders.
+     * @return A list of orders associated with the user.
+     */
     public List<Order> getUserOrder(User user) {
         return orderRepository.findByUser(user);
     }
 
+    /**
+     * Creates an order for a specific user.
+     *
+     * @param user The user for whom to create the order.
+     * @param order The order to be created.
+     * @return The created order associated with the user.
+     */
     public Order userCreateOrder(User user, Order order) {
         order.setUser(user);
         return orderRepository.save(order);
@@ -98,6 +161,13 @@ public class OrderService {
 
 // Products in orders ==>
 
+    /**
+     * Adds a product to an existing order.
+     *
+     * @param orderId The ID of the order to which the product will be added.
+     * @param productId The ID of the product to be added to the order.
+     * @return The updated order after adding the product.
+     */
     public Order addProductsToOrder(Long orderId, Long productId) {
         Order order = orderRepository.findOrderById(orderId);
         Product product = productRepository.findProductById(productId);

@@ -10,14 +10,29 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service class responsible for managing product-related operations, including retrieval,
+ * creation, updating, and deletion of products.
+ */
 @Service
 public class ProductService {
 
     private ProductRepository productRepository;
 
+    /**
+     * Setter for injecting the ProductRepository.
+     *
+     * @param productRepository The repository for product data.
+     */
     @Autowired
     public void setProductRepository(ProductRepository productRepository) { this.productRepository = productRepository; }
 
+    /**
+     * Retrieves a list of all available products.
+     *
+     * @return A list of products if available, or throws an exception if no products are found.
+     * @throws InformationNotFound If no products are found in the database.
+     */
     public List<Product> getProducts() {
         List<Product> productList = productRepository.findAll();
         if (productList.isEmpty()){
@@ -27,6 +42,13 @@ public class ProductService {
         }
     }
 
+    /**
+     * Retrieves a product by its unique identifier.
+     *
+     * @param productId The ID of the product to retrieve.
+     * @return An optional containing the product if found, or throws an exception if the product is not found.
+     * @throws InformationNotFound If no product is found with the given ID.
+     */
     public Optional<Product> getProduct(Long productId){
         Product product = productRepository.findProductById(productId);
         if (product == null){
@@ -36,6 +58,13 @@ public class ProductService {
         }
     }
 
+    /**
+     * Creates a new product in the system.
+     *
+     * @param productObject The product to be created.
+     * @return The created product if successful, or throws an exception if a product with the same ID already exists.
+     * @throws InformationAlreadyExists If a product with the same ID already exists.
+     */
     public Product createProduct(Product productObject) {
         Product product = productRepository.findProductById(productObject.getId());
         if (product != null) {
@@ -45,6 +74,15 @@ public class ProductService {
         }
     }
 
+
+    /**
+     * Updates an existing product with the specified ID.
+     *
+     * @param id The ID of the product to update.
+     * @param productObject The updated product information.
+     * @return The updated product if successful, or throws an exception if the product is not found.
+     * @throws InformationNotFound If no product is found with the given ID for updating.
+     */
     public Product updateProduct(Long id, Product productObject) {
 
         Product product = productRepository.findProductById(id);
