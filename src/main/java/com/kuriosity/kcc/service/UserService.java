@@ -89,6 +89,13 @@ public class UserService {
         }
     }
 
+    /**
+     * Finds and returns a user by their unique identifier (ID).
+     *
+     * @param id The unique ID of the user.
+     * @return The user with the specified ID.
+     * @throws InformationNotFound If no user is found with the given ID.
+     */
     public User findById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new InformationNotFound("User with ID " + id + " not found"));
