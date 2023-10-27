@@ -30,6 +30,11 @@ public class OrderService {
     @Autowired
     private ProductRepository productRepository;
 
+    /**
+     * Setter for injecting the OrderRepository.
+     *
+     * @param orderRepository The repository for order data.
+     */
     @Autowired
     public void setOrderRepository(OrderRepository orderRepository) { this.orderRepository = orderRepository; }
 
