@@ -31,6 +31,14 @@ This README provides documentation for the backend API of our e-commerce applica
 - PUT /api/products/{productId} - Update a product.
 - DELETE /api/products/{productId} - Delete a product.
 
+## OrderController
+**Order Management:**
+- GET /api/orders - Get a list of all orders.
+- GET /api/orders/{orderId} - Get order by ID.
+- POST /api/orders - Create a new order.
+- PUT /api/orders/{orderId} - Update an order.
+- DELETE /api/orders/{orderId} - Delete an order.
+- POST /api/{orderId}/add-product/{productId} - Add a product to an order.
 
 ## User Stories
 
