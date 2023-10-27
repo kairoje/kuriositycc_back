@@ -136,7 +136,12 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-
+    /**
+     * Finds and returns a user by their username.
+     *
+     * @param username The username of the user to be found.
+     * @return The user with the specified username.
+     */
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
